@@ -10,11 +10,11 @@
         body {
             margin: 0;
             overflow: hidden;
-            background-color: lightseagreen;
+            /* background-color: lightseagreen; */
         }      
         div {
             margin:0 auto;
-            width: 75%;
+            width: 85%;
             height:100%;
         }
         h1{
@@ -26,6 +26,7 @@
             transform: translate(-50%, -50%);
             font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
             color:linen;
+            size: 20px;
         }
     </style>
    </head>
@@ -35,45 +36,43 @@
     </div>
       <script src="https://cdnjs.cloudflare.com/ajax/libs/pixi.js/4.5.1/pixi.min.js"></script>
       <script type="text/javascript">
+        const colors = ['ff9595','49c7c0','82b33b','f2a369','d896e2'];
+        const approaches = ['uniform','non-uniform','sampled','generative'];
+        const techniques = ['noise','fbm','voronoi','grid','raymarch'];
+        const styles = ['oscillated','sequenced','modulated','repetative','tesselated','truchet','tiled','mirrored'];
+        const shapes = ['circle','triangle','square','star','blob','capsule','ring','hex','zig-zag'];
+        const spaces = ['polar-coordinate','cartesian-coordinate','homogeneous-coordinate'];
+        const forms = ['sdf','texture','space'];
 
-        // https://hackernoon.com/understanding-map-filter-and-reduce-in-javascript-5df1c7eee464
-        const ideas = [
-            {
-                "name": "noise",
-                "id": 1
-            },
-            {
-                "name": "fbm",
-                "id": 1
-            },
-            {
-                "name": "circle",
-                "id": 4
-            },
-            {
-                "name": "uniform",
-                "id": 5
-            },
-            {
-                "name": "nonuniform",
-                "id": 5
-            }
-        ]   
-        
-        let round = (x) => { return Math.sign(x) * Math.ceil(Math.abs(x)); }
+        let round = (x) => { return Math.sign(x) * Math.floor(Math.abs(x)); }   // round down
         let fract = (x) =>  { return x - Math.floor(x) };
         let random = (x) => { return fract(Math.sin(x)*107890.0); }
         let randomRange  = (x,min,max) => { return min+random(x)*(max-min); }
         let wholeRandomRange = (x,min,max) => { return round(randomRange(x,min,max)); }
+        let randomWord = ( a,x ) => { return a[wholeRandomRange(x,0.0,a.length)];}
 
         let update = () =>
         {
+            let d = new Date();
+            // classifications
+            let num = randomRange(d,0.0,10.0);
+            let approach = randomWord(approaches,d*9.77314);
+            let tech = randomWord(techniques,d*312.344133142);
+            let style = randomWord(styles,d*892.21);
+            let form = randomWord(forms,d*321.789);
+            let shape = randomWord(shapes,d*4422.7);
+            let space = randomWord(spaces,d*897.0);
+            // display
             let display = document.getElementById('display');
-            let num = wholeRandomRange(new Date(),0.0,100.0);
-            display.innerText = num;
+            display.innerText = approach + " " + style + " " + shape + " " + tech + " " + space + " " + form;    // num + " : " + 
+            // background
+            document.body.style.backgroundColor = randomWord(colors,d);
         }
 
-        setInterval(update,100);
+        // start
+        update();
+        let milliseconds = 5000;
+        // setInterval(update,milliseconds);
 
     </script>
 </body>
