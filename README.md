@@ -35,7 +35,9 @@
     sample
     generative
     raymarch
-    
+    raymarch
+    voronoi    
+
 ## attribute
     scale
     translate
@@ -43,15 +45,14 @@
     color
 
 ## grid
-    
-
-noise
-fbm
-grid
-pattern
-sdf
-compose
-border
+    noise
+    fbm
+    grid
+    pattern
+    sdf
+    compose
+    border
+    truchet
 
 ## shapes
     circle
@@ -62,18 +63,10 @@ border
     capsule
     ring
     hex
+    zigzag
 
-uniform
-non-uniform
-voronoi
-
-sampled
-generative
-
-Truchet Tiles
-
-raymarch
-
-zigzag
-    
-    thing | space |  
+## approach
+    uniform
+    non-uniform
+    sampled
+    generative
