@@ -1,0 +1,79 @@
+<html>
+   <head>
+      <title>Random Shader Concept Generator</title>
+      <style>
+        *{
+            border: 0;
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            margin: 0;
+            overflow: hidden;
+            background-color: lightseagreen;
+        }      
+        div {
+            margin:0 auto;
+            width: 75%;
+            height:100%;
+        }
+        h1{
+            text-align: center;
+            margin: 0;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+            color:linen;
+        }
+    </style>
+   </head>
+   <body>
+    <div>
+        <h1 id="display"></h1>
+    </div>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/pixi.js/4.5.1/pixi.min.js"></script>
+      <script type="text/javascript">
+
+        // https://hackernoon.com/understanding-map-filter-and-reduce-in-javascript-5df1c7eee464
+        const ideas = [
+            {
+                "name": "noise",
+                "id": 1
+            },
+            {
+                "name": "fbm",
+                "id": 1
+            },
+            {
+                "name": "circle",
+                "id": 4
+            },
+            {
+                "name": "uniform",
+                "id": 5
+            },
+            {
+                "name": "nonuniform",
+                "id": 5
+            }
+        ]   
+        
+        let round = (x) => { return Math.sign(x) * Math.ceil(Math.abs(x)); }
+        let fract = (x) =>  { return x - Math.floor(x) };
+        let random = (x) => { return fract(Math.sin(x)*107890.0); }
+        let randomRange  = (x,min,max) => { return min+random(x)*(max-min); }
+        let wholeRandomRange = (x,min,max) => { return round(randomRange(x,min,max)); }
+
+        let update = () =>
+        {
+            let display = document.getElementById('display');
+            let num = wholeRandomRange(new Date(),0.0,100.0);
+            display.innerText = num;
+        }
+
+        setInterval(update,100);
+
+    </script>
+</body>
