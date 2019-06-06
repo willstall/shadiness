@@ -35,11 +35,12 @@
         <h1 id="display"></h1>
     </div>
       <script type="text/javascript">
+
         const colors = ['ff9595','49c7c0','82b33b','f2a369','d896e2'];
         const approaches = ['uniform','non-uniform','sampled','generative'];
         const techniques = ['noise','fbm','voronoi','grid','raymarch'];
         const styles = ['oscillated','sequenced','modulated','repetative','tesselated','truchet','tiled','mirrored'];
-        const shapes = ['circle','triangle','square','star','blob','capsule','ring','hex','zig-zag'];
+        const shapes = ['circular','trianglar','square','star','blobby','capsule-ish','ringed','hexed','zig-zaged'];
         const spaces = ['polar-coordinate','cartesian-coordinate','homogeneous-coordinate'];
         const forms = ['sdf','texture','space'];
 
@@ -63,7 +64,7 @@
             let space = randomWord(spaces,d*897.0);
             // display
             let display = document.getElementById('display');
-            display.innerText = approach + " " + style + " " + shape + " " + tech + " " + space + " " + form;    // num + " : " + 
+            display.innerText = style + " " + approach + " " +  shape + " " + tech + " " + space + " " + form;    // num + " : " + 
             // background
             document.body.style.backgroundColor = randomWord(colors,d);
         }
